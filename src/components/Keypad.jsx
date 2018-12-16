@@ -15,6 +15,7 @@ class Keypad extends React.Component {
             <Row key={idx} className="keyboard-right-row" buttonArr={arr} />
           ))}
         </div>
+        <div id="equals-keypad-div">=</div>
       </div>
     );
   };
@@ -29,3 +30,5 @@ const leftButtonKeys = [
 ];
 
 const rightButtonKeys = [["C", "AC"], ["/", "*"], ["+", "-"]];
+
+export default Keypad;

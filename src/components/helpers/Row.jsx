@@ -1,13 +1,12 @@
 import React from "react";
+import Button from "../Button";
 
 const Row = props => {
   const { side, buttonArr } = props;
   return (
     <div className={"row-" + side + "-button-div"}>
       {buttonArr.map((buttonValue, idx) => (
-        <div className={side + "-button-div"} key={idx}>
-          {buttonValue}
-        </div>
+        <Button className={side + "-button-div"} key={idx} buttonText={buttonValue} />
       ))}{" "}
     </div>
   );
