@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Row from "./helpers/Row";
 
 class Keypad extends React.Component {
   render = () => {
@@ -6,10 +7,14 @@ class Keypad extends React.Component {
       <div id="keypad-master-div">
         <div id="left-keypad-div">
           {leftButtonKeys.map((arr, idx) => (
-            <div className="keyboard-left-row" key={idx} />
+            <Row key={idx} className="keyboard-left-row" buttonArr={arr} />
           ))}
         </div>
-        <div id="right-keypad-div">hello</div>
+        <div id="right-keypad-div">
+          {rightButtonKeys.map((arr, idx) => (
+            <Row key={idx} className="keyboard-right-row" buttonArr={arr} />
+          ))}
+        </div>
       </div>
     );
   };
