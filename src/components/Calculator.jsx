@@ -12,3 +12,5 @@ const Calculator = props => {
     </div>
   );
 };
+
+export default Calculator;
