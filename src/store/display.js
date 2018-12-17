@@ -45,6 +45,7 @@ const display = (state = initialState, action) => {
         recentInput: inputType.OPERATION,
         lowerDisplay: result[0],
         negative: result[1],
+        currentOp: op,
       };
     }
 
