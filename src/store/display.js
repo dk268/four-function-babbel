@@ -11,7 +11,7 @@ const initialState = {
   operationDisplay: "",
   currentOp: "CLEAR",
   lowerDisplay: "0",
-  negative: false,
+  negative: 1,
   recentInput: "CLEAR",
   previousNum: "0",
 };
@@ -25,14 +25,19 @@ const display = (state = initialState, action) => {
         recentInput: inputType.NUMBER,
       };
     }
+
     case inputType.OPERATION: {
       const [op, toPreviousNum] = operationDiscriminator(
         state.recentInput,
         action.payload,
-        state.lowerDisplay,
+        state.lowerDisplay * state.negative,
         state.previousNum
       );
-      const result = calculate(state.previousNum, state.lowerDisplay, action.payload);
+      const result = calculate(
+        state.previousNum,
+        state.lowerDisplay * state.negative,
+        action.payload
+      );
       return {
         ...state,
         operationDisplay: op,
@@ -42,12 +47,18 @@ const display = (state = initialState, action) => {
         negative: result[1],
       };
     }
+
     case inputType.DOT: {
       return {
         ...state,
         lowerDisplay: dotDiscriminator(state.recentInput, state.lowerDisplay),
       };
     }
+
+    case inputType.NEGATE: {
+      return { ...state, negative: state.negative * -1 };
+    }
+
     case inputType.MEMORY: {
       const memoryArr = memoryDiscriminator(
         action.payload,
@@ -62,6 +73,7 @@ const display = (state = initialState, action) => {
         recentInput: inputType.MEMORY,
       };
     }
+
     case inputType.CLEAR: {
       return {
         ...initialState,
@@ -69,12 +81,18 @@ const display = (state = initialState, action) => {
         memoryDisplay: state.memoryDisplay,
       };
     }
+
     case inputType.ALL_CLEAR: {
       return { ...initialState };
     }
 
     case inputType.EQUALS: {
-      return;
+      const result = calculate(
+        state.previousNum,
+        state.lowerDisplay * state.negative,
+        state.currentOp
+      );
+      return { ...state, operationDisplay: "CLEAR", lowerDisplay: result[0], negative: result[1] };
     }
 
     default:

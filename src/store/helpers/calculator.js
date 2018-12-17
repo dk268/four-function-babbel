@@ -1,6 +1,10 @@
 const calculate = (firstNum, secondNum, operator) => {
   let result;
   switch (operator) {
+    case "CLEAR": {
+      result = secondNum;
+      break;
+    }
     case "plus": {
       result = firstNum + secondNum;
       break;
@@ -24,8 +28,8 @@ const calculate = (firstNum, secondNum, operator) => {
       return "Error";
   }
   if (Math.abs(result) > 99999999) return "OUT OF RANGE";
-  if (result < 0) return [processResult(result), true];
-  else return [processResult(result), false];
+  if (result < 0) return [processResult(result), 1];
+  else return [processResult(result), -1];
 };
 
 const truncate = amt => string => string.slice(0, amt);
