@@ -1,6 +1,7 @@
 import { inputType } from "../.";
 
-const operationDiscriminator = (recentType, op) => {
+const operationDiscriminator = (recentType, op, lowerDisplay) => {
+  //(type, op, prevNumber) --> [op to display, numIntoPrevious]
   switch (recentType) {
     case inputType.NUMBER: {
       return op;
