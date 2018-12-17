@@ -1,10 +1,12 @@
 import numberDiscriminator from "./helpers/numberDiscriminator";
+import { inputType } from ".";
 
 const initialState = {
   upperDisplay: "",
   lowerDisplay: "0",
   minus: false,
   inputType: "CLEAR",
+  currentOp: "CLEAR",
 };
 
 const display = (state = initialState, action) => {
@@ -21,3 +23,22 @@ const display = (state = initialState, action) => {
 };
 
 export default display;
+
+/* 
+switch (type) {
+    case inputType.NUMBER: {
+    }
+    case inputType.OPERATION: {
+    }
+    case inputType.MEMORY: {
+    }
+    case inputType.EQUALS: {
+    }
+    case inputType.DOT: {
+    }
+    case inputType.CLEAR: {
+    }
+    default:
+      return "Error";
+  }
+*/
