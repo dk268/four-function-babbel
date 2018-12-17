@@ -3,6 +3,7 @@ import { inputType } from ".";
 import operationDiscriminator from "./helpers/operationDiscriminator";
 import dotDiscriminator from "./helpers/dotDescriminator";
 import memoryDiscriminator from "./helpers/memoryDiscriminator";
+import calculate from "./helpers/calculator";
 
 const initialState = {
   memoryDisplay: "",
@@ -25,11 +26,20 @@ const display = (state = initialState, action) => {
       };
     }
     case inputType.OPERATION: {
+      const [op, toPreviousNum] = operationDiscriminator(
+        state.recentInput,
+        action.payload,
+        state.lowerDisplay,
+        state.previousNum
+      );
+      const result = calculate(state.previousNum, state.lowerDisplay, action.payload);
       return {
         ...state,
-        operationDisplay: operationDiscriminator(state.recentInput, action.payload),
-        previousNum: state.lowerDisplay,
+        operationDisplay: op,
+        previousNum: toPreviousNum,
         recentInput: inputType.OPERATION,
+        lowerDisplay: result[0],
+        negative: result[1],
       };
     }
     case inputType.DOT: {

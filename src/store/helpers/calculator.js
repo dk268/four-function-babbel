@@ -14,6 +14,7 @@ const calculate = (firstNum, secondNum, operator) => {
       break;
     }
     case "divided by": {
+      // eslint-disable-next-line
       if (secondNum == 0) return "INFINITY LIMIT APPROACHED";
       //intentional loose equality
       else result = firstNum / secondNum;
@@ -29,12 +30,14 @@ const calculate = (firstNum, secondNum, operator) => {
 
 const truncate = amt => string => string.slice(0, amt);
 const processResult = result => {
-  resultStr = result + "";
+  let resultStr = result + "";
   if (result < 0) {
-    if (resultStr.indexOf(".") > -1) return truncate(10)(resultStr);
-    else return truncate(9)(resultStr);
+    if (resultStr.indexOf(".") > -1) return truncate(10)(resultStr).slice(1);
+    else return truncate(9)(resultStr).slice(1);
   } else {
     if (resultStr.indexOf(".") > -1) return truncate(9)(resultStr);
     else return truncate(8)(resultStr);
   }
 };
+
+export default calculate;
