@@ -1,7 +1,7 @@
 import { inputType } from "../.";
 
-const numberDiscriminator = (type, num, currScreen) => {
-  switch (type) {
+const numberDiscriminator = (recentType, num, currScreen) => {
+  switch (recentType) {
     case inputType.NUMBER: {
       if (currScreen.indexOf(".") > -1) {
         if (currScreen.length >= 8) return currScreen;

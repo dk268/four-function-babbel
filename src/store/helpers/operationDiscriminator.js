@@ -1,7 +1,7 @@
 import { inputType } from "../.";
 
-const operationDiscriminator = (type, op, currScreen) => {
-  switch (type) {
+const operationDiscriminator = (recentType, op) => {
+  switch (recentType) {
     case inputType.NUMBER: {
       return op;
     }
@@ -18,7 +18,7 @@ const operationDiscriminator = (type, op, currScreen) => {
       return op;
     }
     case inputType.CLEAR: {
-      return "CLEAR";
+      return op;
     }
     default:
       return "Error";
