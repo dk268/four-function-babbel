@@ -10,3 +10,5 @@ const memoryDiscriminator = (num, memoryAction, currMemory) => {
 };
 
 export default memoryDiscriminator;
+
+//taking break;
