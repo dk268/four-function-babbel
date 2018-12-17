@@ -102,5 +102,3 @@ switch (recentType) {
       return "Error";
   }
 */
-
-//Time's up...
