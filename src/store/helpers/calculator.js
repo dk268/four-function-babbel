@@ -1,35 +1,38 @@
 const calculate = (firstNum, secondNum, operator) => {
+  if (isNaN(secondNum)) return 0;
   let result;
+  console.log(firstNum, secondNum, operator);
   switch (operator) {
     case "CLEAR": {
       result = secondNum;
       break;
     }
-    case "plus": {
-      result = firstNum + secondNum;
+    case "+": {
+      result = firstNum * 1 + secondNum * 1;
       break;
     }
-    case "minus": {
+    case "-": {
       result = firstNum - secondNum;
       break;
     }
-    case "times": {
+    case "*": {
       result = firstNum * secondNum;
       break;
     }
-    case "divided by": {
+    case "/": {
       // eslint-disable-next-line
       if (secondNum == 0) return "INFINITY LIMIT APPROACHED";
       //intentional loose equality
       else result = firstNum / secondNum;
+      console.log(firstNum, secondNum, firstNum / secondNum);
       break;
     }
     default:
       return "Error";
   }
   if (Math.abs(result) > 99999999) return "OUT OF RANGE";
-  if (result < 0) return [processResult(result), 1];
-  else return [processResult(result), -1];
+  if (result < 0) return [processResult(result), -1];
+  else return [processResult(result), 1];
 };
 
 const truncate = amt => string => string.slice(0, amt);

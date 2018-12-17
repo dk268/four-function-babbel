@@ -1,16 +1,17 @@
 import { inputType } from "../.";
 
-const numberDiscriminator = (recentType, num, currScreen) => {
+const numberDiscriminator = (recentType, num, currScreen = "") => {
   switch (recentType) {
     case inputType.NUMBER: {
       if (currScreen.indexOf(".") > -1) {
         if (currScreen.length >= 8) return currScreen;
       } else if (currScreen.length >= 9) return currScreen;
       if (currScreen === "0") return num;
+      // console.log(currScreen + "!", num);
       return currScreen + num;
     }
     case inputType.OPERATION: {
-      return currScreen;
+      return num;
     }
     case inputType.MEMORY: {
       return currScreen;

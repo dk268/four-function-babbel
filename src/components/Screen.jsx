@@ -17,7 +17,7 @@ const Screen = props => {
           {props.negativeDisplay ? "-" : ""}
         </div>
         <div id="screen-div-primary" className="screen-div">
-          {props.primaryDisplay}
+          {props.primaryDisplay ? props.primaryDisplay : "0"}
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ const mapStateToProps = state => {
   const { display } = state;
   return {
     memoryDisplay: display.memoryDisplay,
-    operationDisplay: display.operationDisplay,
+    operationDisplay: display.operationDisplay === "CLEAR" ? "" : display.operationDisplay,
     negativeDisplay: display.negative < 1,
     primaryDisplay: display.lowerDisplay,
   };

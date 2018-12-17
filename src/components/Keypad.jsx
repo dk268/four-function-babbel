@@ -4,19 +4,65 @@ import { aCF, inputType } from "../store";
 import { connect } from "react-redux";
 
 class Keypad extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
   render = () => {
+    // console.log(this.props.handleMemory, this.props.handleMemory("MR"));
+    const leftButtonKeys = [
+      [
+        { buttonText: "MR", buttonFunc: this.props.handleMemory },
+        { buttonText: "MC", buttonFunc: this.props.handleMemory },
+        { buttonText: "MS", buttonFunc: this.props.handleMemory },
+      ],
+      [
+        { buttonText: "7", buttonFunc: this.props.handleNumber },
+        { buttonText: "8", buttonFunc: this.props.handleNumber },
+        { buttonText: "9", buttonFunc: this.props.handleNumber },
+      ],
+      [
+        { buttonText: "4", buttonFunc: this.props.handleNumber },
+        { buttonText: "5", buttonFunc: this.props.handleNumber },
+        { buttonText: "6", buttonFunc: this.props.handleNumber },
+      ],
+      [
+        { buttonText: "1", buttonFunc: this.props.handleNumber },
+        { buttonText: "2", buttonFunc: this.props.handleNumber },
+        { buttonText: "3", buttonFunc: this.props.handleNumber },
+      ],
+      [
+        { buttonText: "(-)", buttonFunc: this.props.handleNegate },
+        { buttonText: "0", buttonFunc: this.props.handleNumber },
+        { buttonText: ".", buttonFunc: this.props.handleDot },
+      ],
+    ];
+
+    const rightButtonKeys = [
+      [
+        { buttonText: "C", buttonFunc: this.props.handleClear },
+        { buttonText: "AC", buttonFunc: this.props.handleAllClear },
+      ],
+      [
+        { buttonText: "/", buttonFunc: this.props.handleOperation },
+        { buttonText: "*", buttonFunc: this.props.handleOperation },
+      ],
+      [
+        { buttonText: "+", buttonFunc: this.props.handleOperation },
+        { buttonText: "-", buttonFunc: this.props.handleOperation },
+      ],
+    ];
     return (
       <div id="keypad-master-div">
         <div id="left-keypad-div">
           {leftButtonKeys.map((arr, idx) => (
-            <Row key={idx} className="keyboard-left-row" buttonArr={arr} />
+            <Row key={idx} className="keyboard-left-row" buttonArr={arr} side="left" />
           ))}
         </div>
         <div id="right-keypad-div">
           {rightButtonKeys.map((arr, idx) => (
-            <Row key={idx} className="keyboard-right-row" buttonArr={arr} />
+            <Row key={idx} className="keyboard-right-row" buttonArr={arr} side="right" />
           ))}
-          <button id="equals-keypad-button" onClick={handleEquals}>
+          <button id="equals-keypad-button" onClick={this.props.handleEquals}>
             =
           </button>
         </div>
@@ -24,82 +70,6 @@ class Keypad extends Component {
     );
   };
 }
-
-const handleEquals = () => dispatch => {
-  dispatch(aCF(inputType.EQUALS));
-  console.log("hiii!");
-};
-
-const handleMemory = memType => dispatch => {
-  dispatch(aCF(inputType.MEMORY, memType));
-};
-
-const handleNumber = num => dispatch => {
-  dispatch(aCF(inputType.NUMBER, num));
-};
-
-const handleNegate = () => dispatch => {
-  dispatch(aCF(inputType.NEGATE));
-};
-
-const handleDot = () => dispatch => {
-  dispatch(aCF(inputType.DOT));
-};
-
-const leftButtonKeys = [
-  [
-    { buttonText: "MR", buttonFunc: handleMemory("MR") },
-    { buttonText: "MC", buttonFunc: handleMemory("MC") },
-    { buttonText: "MS", buttonFunc: handleMemory("MS") },
-  ],
-  [
-    { buttonText: "7", buttonFunc: handleNumber("7") },
-    { buttonText: "8", buttonFunc: handleNumber("8") },
-    { buttonText: "9", buttonFunc: handleNumber("9") },
-  ],
-  [
-    { buttonText: "4", buttonFunc: handleNumber("4") },
-    { buttonText: "5", buttonFunc: handleNumber("5") },
-    { buttonText: "6", buttonFunc: handleNumber("6") },
-  ],
-  [
-    { buttonText: "1", buttonFunc: handleNumber("1") },
-    { buttonText: "2", buttonFunc: handleNumber("2") },
-    { buttonText: "3", buttonFunc: handleNumber("3") },
-  ],
-  [
-    { buttonText: "(-)", buttonFunc: handleNegate() },
-    { buttonText: "0", buttonFunc: handleNumber("0") },
-    { buttonText: ".", buttonFunc: handleDot() },
-  ],
-];
-
-const handleClear = () => dispatch => {
-  dispatch(aCF(inputType.CLEAR));
-};
-
-const handleAllClear = () => dispatch => {
-  dispatch(aCF(inputType.ALL_CLEAR));
-};
-
-const handleOperation = op => dispatch => {
-  dispatch(aCF(inputType.OPERATION, op));
-};
-
-const rightButtonKeys = [
-  [
-    { buttonText: "C", buttonFunc: handleClear() },
-    { buttonText: "AC", buttonFunc: handleAllClear() },
-  ],
-  [
-    { buttonText: "/", buttonFunc: handleOperation("divided by") },
-    { buttonText: "*", buttonFunc: handleOperation("times") },
-  ],
-  [
-    { buttonText: "+", buttonFunc: handleOperation("plus") },
-    { buttonText: "-", buttonFunc: handleOperation("minus") },
-  ],
-];
 
 const mapStateToProps = state => {
   const { display } = state;
@@ -110,16 +80,32 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  handleEquals,
-  handleAllClear,
-  handleClear,
-  handleDot,
-  handleMemory,
-  handleNegate,
-  handleNumber,
-  handleOperation,
-};
+const mapDispatchToProps = dispatch => ({
+  handleEquals: () => {
+    dispatch(aCF(inputType.EQUALS));
+  },
+  handleMemory: memType => {
+    dispatch(aCF(inputType.MEMORY, memType));
+  },
+  handleNumber: num => {
+    dispatch(aCF(inputType.NUMBER, num));
+  },
+  handleNegate: () => {
+    dispatch(aCF(inputType.NEGATE));
+  },
+  handleDot: () => {
+    dispatch(aCF(inputType.DOT));
+  },
+  handleClear: () => {
+    dispatch(aCF(inputType.CLEAR));
+  },
+  handleAllClear: () => {
+    dispatch(aCF(inputType.ALL_CLEAR));
+  },
+  handleOperation: op => {
+    dispatch(aCF(inputType.OPERATION, op));
+  },
+});
 
 export default connect(
   mapStateToProps,

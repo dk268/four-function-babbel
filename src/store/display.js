@@ -21,7 +21,7 @@ const display = (state = initialState, action) => {
     case inputType.NUMBER: {
       return {
         ...state,
-        lowerDisplay: numberDiscriminator(state.recentInput, action.payload, state.lower),
+        lowerDisplay: numberDiscriminator(state.recentInput, action.payload, state.lowerDisplay),
         recentInput: inputType.NUMBER,
       };
     }
@@ -43,7 +43,7 @@ const display = (state = initialState, action) => {
         operationDisplay: op,
         previousNum: toPreviousNum,
         recentInput: inputType.OPERATION,
-        lowerDisplay: result[0],
+        lowerDisplay: state.previousNum ? result[0] : state.lowerDisplay,
         negative: result[1],
         currentOp: op,
       };
@@ -101,6 +101,7 @@ const display = (state = initialState, action) => {
         lowerDisplay: result[0],
         negative: result[1],
         recentInput: inputType.EQUALS,
+        currentOp: "CLEAR",
       };
     }
 
