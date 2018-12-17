@@ -1,9 +1,9 @@
 import numberDiscriminator from "./helpers/numberDiscriminator";
-import { inputType } from ".";
 import operationDiscriminator from "./helpers/operationDiscriminator";
 import dotDiscriminator from "./helpers/dotDescriminator";
 import memoryDiscriminator from "./helpers/memoryDiscriminator";
 import calculate from "./helpers/calculator";
+import { inputType } from ".";
 
 const initialState = {
   memoryDisplay: "",

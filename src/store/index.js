@@ -3,14 +3,6 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import display from "./display";
 
-const rootReducer = combineReducers({ display });
-
-const middleware = composeWithDevTools(applyMiddleware(createLogger({ collapsed: true })));
-
-const store = createStore(rootReducer, middleware);
-
-export default store;
-
 export const aCF = (type, payload) => ({
   type,
   payload,
@@ -26,3 +18,11 @@ export const inputType = {
   ALL_CLEAR: "ALL_CLEAR",
   NEGATE: "NEGATE",
 };
+
+const rootReducer = combineReducers({ display });
+
+const middleware = composeWithDevTools(applyMiddleware(createLogger({ collapsed: true })));
+
+const store = createStore(rootReducer, middleware);
+
+export default store;

@@ -5,8 +5,13 @@ const Row = props => {
   const { side, buttonArr } = props;
   return (
     <div className={"row-" + side + "-button-div"}>
-      {buttonArr.map((buttonValue, idx) => (
-        <Button className={side + "-button-div"} key={idx} buttonText={buttonValue} />
+      {buttonArr.map((button, idx) => (
+        <Button
+          className={side + "-button-div"}
+          key={idx}
+          buttonText={button.buttonText}
+          buttonFunc={button.buttonFunc}
+        />
       ))}{" "}
     </div>
   );

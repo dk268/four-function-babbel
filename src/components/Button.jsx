@@ -1,16 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 const Button = props => {
-  const { buttonText, buttonType, buttonValue } = props;
-  return <div id={buttonText + "-button-div"}>{buttonText}</div>;
+  const { buttonText, buttonFunc } = props;
+  return (
+    <div id={buttonText + "-button-div"} onClick={buttonFunc}>
+      {buttonText}
+    </div>
+  );
 };
 
-const mapStateToProps = state => {};
-
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Button);
+export default Button;

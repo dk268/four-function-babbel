@@ -1,13 +1,13 @@
 import React from "react";
+import Screen from "./Screen";
+import Keypad from "./Keypad";
 
 const Calculator = props => {
   return (
     <div id="calculator-outer-div">
-      <div>screen placeholder</div>
-      <div>
-        buttons outer div placeholder
-        <div>buttons numerical grid div</div>
-        <div>buttons operations column div</div>
+      <Screen />
+      <div id="buttons-outer-div">
+        <Keypad />
       </div>
     </div>
   );
