@@ -16,7 +16,7 @@ code {
   flex-flow: column;
   border: solid 1px black;
   margin: 5% auto;
-  max-width: 50%;
+  width: 400px;
 }
 
 #screen-master-div {
@@ -51,17 +51,11 @@ code {
   justify-content: space-between;
 }
 
-#left-keypad-div {
-  display: flex;
-  border: solid 1px black;
-  width: 60%;
-  flex-direction: column;
-}
-
+#left-keypad-div,
 #right-keypad-div {
   display: flex;
   border: solid 1px black;
-  width: 40%;
+  width: 60%;
   flex-direction: column;
 }
 
@@ -72,9 +66,18 @@ code {
   justify-content: space-around;
 }
 
-.row-left-button-div,
+.row-left-button-div > *,
 .row-right-button-div > * {
   border: solid 1px black;
   flex-grow: 1;
   text-align: center;
+}
+
+.button-div:hover {
+  background-color: lightgray;
+}
+
+.button-div:active {
+  background-color: darkblue;
+  color: white;
 }

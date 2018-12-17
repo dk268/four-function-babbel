@@ -9,7 +9,10 @@ const Screen = props => {
           {props.memoryDisplay}
         </div>
         <div id="screen-div-operator" className="screen-div">
-          {props.operationDisplay}
+          {(!props.operationDisplay ? "" : props.previousNum + " ") +
+            props.operationDisplay +
+            " " +
+            props.currentNum}
         </div>
       </div>
       <div id="screen-div-lower">
@@ -31,6 +34,8 @@ const mapStateToProps = state => {
     operationDisplay: display.operationDisplay === "CLEAR" ? "" : display.operationDisplay,
     negativeDisplay: display.negative < 1,
     primaryDisplay: display.lowerDisplay,
+    previousNum: display.previousNum,
+    currentNum: display.lowerDisplay,
   };
 };
 

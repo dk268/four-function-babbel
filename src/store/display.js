@@ -43,7 +43,8 @@ const display = (state = initialState, action) => {
         operationDisplay: op,
         previousNum: toPreviousNum,
         recentInput: inputType.OPERATION,
-        lowerDisplay: state.previousNum ? result[0] : state.lowerDisplay,
+        lowerDisplay: state.previousNum && op === state.currentOp ? result[0] : 0,
+        // lowerDisplay: 0,
         negative: result[1],
         currentOp: op,
       };
@@ -102,6 +103,7 @@ const display = (state = initialState, action) => {
         negative: result[1],
         recentInput: inputType.EQUALS,
         currentOp: "CLEAR",
+        previousNum: 0,
       };
     }
 
