@@ -28,6 +28,7 @@ const display = (state = initialState, action) => {
       return {
         ...state,
         operationDisplay: operationDiscriminator(state.recentInput, action.payload),
+        previousNum: state.lowerDisplay,
         recentInput: inputType.OPERATION,
       };
     }
@@ -63,6 +64,7 @@ const display = (state = initialState, action) => {
     }
 
     case inputType.EQUALS: {
+      return;
     }
 
     default:
