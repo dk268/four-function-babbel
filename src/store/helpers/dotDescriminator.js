@@ -32,6 +32,12 @@ const dotDiscriminator = (recentType, currScreen) => {
     case inputType.CLEAR: {
       return currScreen + ".";
     }
+    case inputType.NEGATE: {
+      if (currScreen.indexOf(".") === currScreen.length - 1)
+        return currScreen.slice(0, currScreen.length - 1);
+      if (currScreen.indexOf(".") > 0) return currScreen;
+      return currScreen + ".";
+    }
     default:
       return "Error";
   }

@@ -21,6 +21,9 @@ const operationDiscriminator = (recentType, op, lowerDisplay, prevNumber) => {
     case inputType.CLEAR: {
       return [op, lowerDisplay];
     }
+    case inputType.NEGATE: {
+      return [op, lowerDisplay];
+    }
     default:
       return "Error";
   }

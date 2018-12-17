@@ -25,6 +25,13 @@ const numberDiscriminator = (recentType, num, currScreen) => {
     case inputType.CLEAR: {
       return num;
     }
+    case inputType.NEGATE: {
+      if (currScreen.indexOf(".") > -1) {
+        if (currScreen.length >= 8) return currScreen;
+      } else if (currScreen.length >= 9) return currScreen;
+      if (currScreen === "0") return num;
+      return currScreen + num;
+    }
     default:
       return "Error";
   }

@@ -56,8 +56,9 @@ const display = (state = initialState, action) => {
     }
 
     case inputType.NEGATE: {
-      return { ...state, negative: state.negative * -1 };
+      return { ...state, negative: state.negative * -1, recentInput: inputType.NEGATE };
     }
+    //note: negate does not differ in recentType from number--not yet, at least.
 
     case inputType.MEMORY: {
       const memoryArr = memoryDiscriminator(
@@ -79,6 +80,7 @@ const display = (state = initialState, action) => {
         ...initialState,
         numberInMemory: state.numberInMemory,
         memoryDisplay: state.memoryDisplay,
+        recentInput: inputType.CLEAR,
       };
     }
 
@@ -92,7 +94,13 @@ const display = (state = initialState, action) => {
         state.lowerDisplay * state.negative,
         state.currentOp
       );
-      return { ...state, operationDisplay: "CLEAR", lowerDisplay: result[0], negative: result[1] };
+      return {
+        ...state,
+        operationDisplay: "CLEAR",
+        lowerDisplay: result[0],
+        negative: result[1],
+        recentInput: inputType.EQUALS,
+      };
     }
 
     default:
