@@ -1,11 +1,11 @@
-import { inputType } from "../.";
-
-const memoryDiscriminator = (num, memoryAction, currMemory) => {
-  if (memoryAction === "clear") return null;
-  if (memoryAction === "store") return num;
+const memoryDiscriminator = (payload, currMemory, currDisplay) => {
+  // (obj, val) --> [upperDisplay, numInMemory, numToDisplay]
+  const { num, memoryAction } = payload;
+  if (memoryAction === "clear") return ["", null, currDisplay];
+  if (memoryAction === "store") return ["M", num, "0"];
   else {
-    if (currMemory === null) return "0";
-    else return currMemory;
+    if (currMemory === null) return ["", null, currDisplay];
+    else return ["M", currMemory, currMemory];
   }
 };
 

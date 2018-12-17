@@ -23,4 +23,5 @@ export const inputType = {
   CLEAR: "CLEAR",
   EQUALS: "EQUALS",
   DOT: "DOT",
+  ALL_CLEAR: "ALL_CLEAR",
 };
